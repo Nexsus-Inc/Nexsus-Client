@@ -1,58 +1,50 @@
 package de.constt.nexsus_client.client;
 
+import com.jagrosh.discordipc.exceptions.NoDiscordClientException;
+import de.constt.nexsus_client.client.config.NexsusConfigData;
+import de.constt.nexsus_client.client.discordRPC.discordIPCCore;
+import de.constt.nexsus_client.client.events.chat.ClientReciveMessageEvent;
+import de.constt.nexsus_client.client.events.client.ClientTickEventsEvent;
+import de.constt.nexsus_client.client.events.hud.HudRenderCallbackEvent;
+import de.constt.nexsus_client.client.events.player.ClientPlayerConnectionEvents;
 import de.constt.nexsus_client.client.helperFunctions.chatHelperFunction;
-import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
-import de.constt.nexsus_client.client.roots.modules.*;
+
+import de.constt.nexsus_client.client.roots.modules.ModuleManager;
+import de.constt.nexsus_client.client.roots.modules.player.NoHungerModule;
+import de.constt.nexsus_client.client.roots.modules.world.NoFallModule;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Nexsus_clientClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("nexsus_client");
-    private static final List<ModuleImplementation> MODULES = new ArrayList<>();
+    public static final String MOD_ID = "nexsus_client";
 
     @Override
     public void onInitializeClient() {
-        chatHelperFunction.setPrefix("Nexsus Client");
+        // CONFIG: Load
+        NexsusConfigData.init();
 
-        MODULES.add(new FlightModule());
-        MODULES.add(new FullbrightModule());
-        MODULES.add(new NoFallModule());
-        MODULES.add(new NoHungerModule());
-        MODULES.add(new NoWheaterModule());
-        MODULES.add(new PacketLoggerModule());
+        // CHAT HELPER FUNCTION: Set Prefix
+        chatHelperFunction.setPrefix("☐ Nexsus");
 
-        ClientTickEvents.START_CLIENT_TICK.register(client ->
-                MODULES.forEach(module -> {
-                    if (module.getEnabledStatus())
-                        module.tick();
-                })
-        );
+        // DISCORD IPC: Start
+        try {
+            discordIPCCore.start();
+        } catch (NoDiscordClientException e) {
+            throw new RuntimeException(e);
+        }
 
-        ClientTickEvents.END_CLIENT_TICK.register(client ->
-                MODULES.forEach(module -> {
-                    if (module.getEnabledStatus())
-                        module.postTick();
-                })
-        );
+        // EVENTS REGISTRATION
+        ClientReciveMessageEvent.register();
+        HudRenderCallbackEvent.register();
+        ClientPlayerConnectionEvents.register();
+        ClientTickEventsEvent.register();
 
-        NoHungerModule.toggle();
-    }
+        // ModuleManager
+        ModuleManager.init();
 
-    /**
-     * Gets a list of loaded hacks
-     * @return a list of hacks
-     */
-    public static List<ModuleImplementation> getHacks() {
-        return MODULES;
-    }
-
-    public static int numHacks() {
-        return getHacks().size();
+        // Temporarily toggle Modules
+        ModuleManager.tempToggleModules();
     }
 }
