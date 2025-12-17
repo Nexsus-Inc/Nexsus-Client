@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.14-SNAPSHOT'
     id 'maven-publish'
+//    id 'com.gradleup.shadow' version '8.11.0'
 }
 
 version = project.mod_version
@@ -17,6 +18,7 @@ fabricApi {
     }
 }
 
+
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
@@ -27,6 +29,10 @@ repositories {
 
     // LIBS FLATDIR
     flatDir { dirs "libs" }
+
+    maven {
+        url "https://repo.spring.io/libs-milestone/"
+    }
 }
 
 dependencies {
@@ -43,8 +49,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Discord IPC
-    implementation group: "", name: "DiscordIPC", version: ""
-
+    // modImplementation files('libs/DiscordIPC.jar')
+    implementation 'com.jagrosh:DiscordIPC:0.4'
 }
 
 processResources {
@@ -86,6 +92,7 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+        configurations.modCompileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
