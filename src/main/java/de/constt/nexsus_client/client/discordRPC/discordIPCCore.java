@@ -1,5 +1,6 @@
 package de.constt.nexsus_client.client.discordRPC;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.IPCListener;
@@ -13,7 +14,9 @@ import de.constt.nexsus_client.client.config.NexsusConfigData;
 import de.constt.nexsus_client.client.states.AddressState;
 import net.minecraft.client.MinecraftClient;
 
+import java.awt.*;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 public final class discordIPCCore {
 
@@ -32,6 +35,11 @@ public final class discordIPCCore {
         String versionId = v.getId();
 
         assert mc.getServer() != null;
+
+        JsonObject buttons = new JsonObject();
+        buttons.add("button1", new JsonObject());
+        buttons.getAsJsonObject("button1").addProperty("label", "GitHub");
+        buttons.getAsJsonObject("button1").addProperty("url", "https://github.com/Nexsus-Inc/Nexsus-Client");
 
         client.setListener(new IPCListener() {
             @Override
