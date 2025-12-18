@@ -7,7 +7,6 @@ import de.constt.nexsus_client.client.roots.modules.render.FPSHudModule;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.Objects;
 
@@ -86,8 +85,8 @@ public class renderHelperFunction {
         for(ModuleImplementation module: ModuleManager.getModules()) {
             if(Objects.requireNonNull(ModuleManager.getModule(module.getClass())).getEnabledStatus()) {
                 textRenderer.draw(
-                        annotationHelperFunction.getName(module.getClass()),
-                        screenWidth - MinecraftClient.getInstance().textRenderer.getWidth(annotationHelperFunction.getName(module.getClass())) - 5, yOffset,
+                        moduleAnnotationHelperFunction.getName(module.getClass()),
+                        screenWidth - MinecraftClient.getInstance().textRenderer.getWidth(moduleAnnotationHelperFunction.getName(module.getClass())) - 5, yOffset,
                         textColor, true,
                         matrices,
                         drawContext.getVertexConsumers(),
