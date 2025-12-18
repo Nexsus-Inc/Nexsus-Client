@@ -1,14 +1,17 @@
 package de.constt.nexsus_client.client.roots.gui;
 
-import de.constt.nexsus_client.client.helperFunctions.annotationHelperFunction;
+import de.constt.nexsus_client.client.helperFunctions.moduleAnnotationHelperFunction;
 import de.constt.nexsus_client.client.helperFunctions.chatHelperFunction;
 import de.constt.nexsus_client.client.roots.gui.widgets.BlackButtonWidget;
 import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
 import de.constt.nexsus_client.client.roots.modules.ModuleManager;
+import de.constt.nexsus_client.client.roots.modules.misc.DebuggerModule;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
+
+import java.util.Objects;
 
 public class ModulesScreen extends Screen {
     public ModulesScreen(String title) {
@@ -22,7 +25,7 @@ public class ModulesScreen extends Screen {
         int spacing = 20;
 
         for (ModuleImplementation module : ModuleManager.getModules()) {
-            this.addDrawableChild(new BlackButtonWidget(x, y, 100, 15, annotationHelperFunction.getName(module.getClass()),button -> {
+            this.addDrawableChild(new BlackButtonWidget(x, y, 100, 15, moduleAnnotationHelperFunction.getName(module.getClass()), button -> {
                 module.toggle();
                 String status = module.getEnabledStatus() ? "on" : "off";
                 String statusColorCoded = status;
@@ -32,8 +35,10 @@ public class ModulesScreen extends Screen {
                     statusColorCoded = "§coff";
                 }
 
-                if (MinecraftClient.getInstance().player != null) {
-                    chatHelperFunction.sendCSMessageNeutral("§8Toggled§r "+annotationHelperFunction.getName(module.getClass()) + " (" + statusColorCoded + ")");
+                if(Objects.requireNonNull(ModuleManager.getModule(DebuggerModule.class)).getEnabledStatus()) {
+                    if (MinecraftClient.getInstance().player != null) {
+                        chatHelperFunction.sendCSMessageNeutral("§8Toggled§r "+ moduleAnnotationHelperFunction.getName(module.getClass()) + " (" + statusColorCoded + ")");
+                    }
                 }
             }));
 
