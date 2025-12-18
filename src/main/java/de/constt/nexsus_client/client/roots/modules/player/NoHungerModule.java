@@ -12,7 +12,7 @@ import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 @InfoAnnotation(
-        name = "No Hunger",
+        name = "No-Hunger",
         description = "Reduces the hunger taken by e.g. sprinting (Does not remove hunger)",
         category = CategoryImplementation.Categories.PLAYER
 )
