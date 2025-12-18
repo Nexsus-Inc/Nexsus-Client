@@ -5,6 +5,7 @@ import de.constt.nexsus_client.client.config.NexsusConfigData;
 import de.constt.nexsus_client.client.discordRPC.discordIPCCore;
 import de.constt.nexsus_client.client.events.chat.ClientReciveMessageEvent;
 import de.constt.nexsus_client.client.events.client.ClientTickEventsEvent;
+import de.constt.nexsus_client.client.events.client.InputEventHandler;
 import de.constt.nexsus_client.client.events.hud.HudRenderCallbackEvent;
 import de.constt.nexsus_client.client.events.player.ClientPlayerConnectionEvents;
 import de.constt.nexsus_client.client.events.render.ScreenRenderCallbackEvent;
@@ -26,7 +27,7 @@ public class Nexsus_clientClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("nexsus_client");
     public static final String MOD_ID = "nexsus_client";
 
-    private static final String CATEGORY = "key.categories.nexsus_client";
+    private static final String CATEGORY = "modules.title";
     private static KeyBinding menuKey;
 
     @Override
@@ -50,6 +51,7 @@ public class Nexsus_clientClient implements ClientModInitializer {
         ClientPlayerConnectionEvents.register();
         ClientTickEventsEvent.register();
         ScreenRenderCallbackEvent.register();
+        InputEventHandler.register();
 
         // ModuleManager
         ModuleManager.init();
