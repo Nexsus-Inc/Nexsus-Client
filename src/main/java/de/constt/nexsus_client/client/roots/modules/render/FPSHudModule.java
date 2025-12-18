@@ -6,7 +6,7 @@ import de.constt.nexsus_client.client.roots.implementations.CategoryImplementati
 import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
 
 @InfoAnnotation(
-        name = "FPS (Hud)",
+        name = "FPS-(Hud)",
         description = "Shows your FPS in the HUD",
         category = CategoryImplementation.Categories.RENDER
 )
