@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">Nexsus Client</h1>
-<p align="center">The only anarchy client you need</p>
+<p align="center">The only utility mod you need</p>
 
 # Links
 - Website: `comming soon...`
