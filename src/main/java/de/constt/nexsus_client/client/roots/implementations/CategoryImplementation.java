@@ -7,6 +7,7 @@ public class CategoryImplementation {
         RENDER,
         MISC,
         PLAYER,
-        EXPLOITS
+        EXPLOITS,
+        WORLD
     }
 }
