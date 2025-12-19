@@ -7,4 +7,5 @@ import java.lang.annotation.RetentionPolicy;
 public @interface CommandAnnotation {
     String name();
     String description();
+    String command();
 }
