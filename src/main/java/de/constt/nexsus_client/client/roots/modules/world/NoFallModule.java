@@ -1,7 +1,6 @@
 package de.constt.nexsus_client.client.roots.modules.world;
 
-import de.constt.nexsus_client.client.annotations.InfoAnnotation;
-import de.constt.nexsus_client.client.helperFunctions.chatHelperFunction;
+import de.constt.nexsus_client.client.annotations.ModuleInfoAnnotation;
 import de.constt.nexsus_client.client.mixins.PlayerMoveC2SPacketAccessor;
 import de.constt.nexsus_client.client.roots.implementations.CategoryImplementation;
 import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
@@ -9,10 +8,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
-@InfoAnnotation(
+@ModuleInfoAnnotation(
         name = "No Fall",
         description = "Disables fall damage",
-        category = CategoryImplementation.Categories.MISC
+        category = CategoryImplementation.Categories.MISC,
+        internalModuleName = "nofall"
 )
 public class NoFallModule extends ModuleImplementation {
     @Override
