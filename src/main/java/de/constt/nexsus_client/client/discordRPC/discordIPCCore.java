@@ -1,6 +1,5 @@
 package de.constt.nexsus_client.client.discordRPC;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.IPCListener;
@@ -14,11 +13,9 @@ import de.constt.nexsus_client.client.config.NexsusConfigData;
 import de.constt.nexsus_client.client.states.AddressState;
 import net.minecraft.client.MinecraftClient;
 
-import java.awt.*;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 
-public final class discordIPCCore {
+public final class DiscordIPCCore {
 
     private static IPCClient client;
     private static final long CLIENT_ID = 1450138306141618227L;
