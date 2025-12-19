@@ -1,6 +1,6 @@
 package de.constt.nexsus_client.client.events.hud;
 
-import de.constt.nexsus_client.client.helperFunctions.renderHelperFunction;
+import de.constt.nexsus_client.client.helperFunctions.RenderHelperFunction;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 
@@ -10,7 +10,7 @@ public class HudRenderCallbackEvent {
         HudRenderCallback.EVENT.register((drawContext, delta) -> {
             if (MinecraftClient.getInstance().getDebugHud().shouldShowDebugHud()) return;
 
-            renderHelperFunction.renderHud(drawContext);
+            RenderHelperFunction.renderHud(drawContext);
         });
     }
 }
