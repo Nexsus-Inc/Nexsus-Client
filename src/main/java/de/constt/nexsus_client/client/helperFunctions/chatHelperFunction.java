@@ -4,7 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-public class chatHelperFunction {
+public class ChatHelperFunction {
 
     public static String prefix;
 
