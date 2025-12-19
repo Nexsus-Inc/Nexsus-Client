@@ -1,20 +1,18 @@
 package de.constt.nexsus_client.client.roots.modules.movement;
 
-import de.constt.nexsus_client.client.annotations.InfoAnnotation;
-import de.constt.nexsus_client.client.helperFunctions.chatHelperFunction;
+import de.constt.nexsus_client.client.annotations.ModuleInfoAnnotation;
 import de.constt.nexsus_client.client.mixins.PlayerMoveC2SPacketAccessor;
 import de.constt.nexsus_client.client.roots.implementations.CategoryImplementation;
 import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.MovementType;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.util.math.Vec3d;
 
-@InfoAnnotation(
+@ModuleInfoAnnotation(
         name = "Flight",
         description = "Enables flying for the player",
-        category = CategoryImplementation.Categories.MOVEMENT
+        category = CategoryImplementation.Categories.MOVEMENT,
+        internalModuleName = "flight"
 )
 public class FlightModule extends ModuleImplementation {
     private static final double FALL_DIST = 0.4;
