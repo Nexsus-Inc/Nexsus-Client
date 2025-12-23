@@ -4,6 +4,8 @@ import de.constt.nexsus_client.client.annotations.ModuleInfoAnnotation;
 import de.constt.nexsus_client.client.roots.implementations.CategoryImplementation;
 import de.constt.nexsus_client.client.roots.implementations.ModuleImplementation;
 
+import java.awt.*;
+
 @ModuleInfoAnnotation(
         name = "Debugger",
         description = "Debug modules and the client",
