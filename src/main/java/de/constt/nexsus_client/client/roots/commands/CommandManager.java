@@ -2,6 +2,7 @@ package de.constt.nexsus_client.client.roots.commands;
 
 import de.constt.nexsus_client.client.roots.commands.misc.HelpCommand;
 import de.constt.nexsus_client.client.roots.commands.modules.BindCommand;
+import de.constt.nexsus_client.client.roots.commands.modules.SetSettingComand;
 import de.constt.nexsus_client.client.roots.commands.modules.ToggleCommand;
 import de.constt.nexsus_client.client.roots.commands.modules.UnbindCommand;
 import de.constt.nexsus_client.client.roots.implementations.CommandImplementation;
@@ -17,6 +18,7 @@ public class CommandManager {
         COMMANDS.add(new HelpCommand());
         COMMANDS.add(new UnbindCommand());
         COMMANDS.add(new ToggleCommand());
+        COMMANDS.add(new SetSettingComand());
     }
 
     /**
