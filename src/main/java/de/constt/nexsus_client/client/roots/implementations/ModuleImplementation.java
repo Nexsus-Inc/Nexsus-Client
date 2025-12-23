@@ -1,11 +1,16 @@
 package de.constt.nexsus_client.client.roots.implementations;
 
 import de.constt.nexsus_client.client.helperFunctions.ModuleAnnotationHelperFunction;
+import de.constt.nexsus_client.client.interfaces.SettingInterface;
 import net.minecraft.network.packet.Packet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ModuleImplementation {
     protected boolean enabled = false;
     public int keyBindingCode;
+    protected final List<SettingInterface<?>> settings = new ArrayList<>();
 
     /**
      * Toggle the module
@@ -15,8 +20,36 @@ public abstract class ModuleImplementation {
         this.enabled = !this.enabled;
     }
 
+    /**
+     * Get the keybinding code of the module
+     * @return Keybinding Code
+     */
     public int getKeybindingCode() {
         return keyBindingCode;
+    }
+
+    /**
+     * Runs when settings are changed
+     */
+    public void setSettings() { }
+
+    /**
+     * Gets all settings of the module
+     * @return Settings
+     */
+    public List<SettingInterface<?>> getSettings() {
+        return settings;
+    }
+
+    /**
+     * Registers a setting
+     * @param setting Setting
+     * @return Setting
+     * @param <T> Setting
+     */
+    protected <T extends SettingInterface<?>> T register(T setting) {
+        settings.add(setting);
+        return setting;
     }
 
     /**
@@ -55,7 +88,11 @@ public abstract class ModuleImplementation {
      */
     public void onDisable() { }
 
-
+    /**
+     * Modify minecraft packets from the module
+     * @param packet Packet
+     * @return False
+     */
     public boolean modifyPacket(Packet<?> packet) {
         return false;
     };
